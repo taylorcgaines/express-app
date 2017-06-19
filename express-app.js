@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
 var loremIpsum = require('lorem-ipsum')
-var plorem  = loremIpsum();
 
-app.get('/lorem', function (req, res) {
-  res.send(`<html><body><p>${plorem}</p><p>${plorem}</p><p>${plorem}</p></body></html>`);
+app.get('/lorem/:loremNum', function (req, res) {
+  var numLorem = parseInt(req.params.loremNum);
+  res.send(`<html><body>`+loremIpsum({count:numLorem, units:"paragraphs", format:"html"})+`</body></html>`);
 });
 
 app.listen(3000, function () {
